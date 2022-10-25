@@ -11,6 +11,8 @@ MyTableWidget::MyTableWidget(QWidget *parent)
     connect(this, &MyTableWidget::itemDoubleClicked, this, &MyTableWidget::openFile);
 }
 
+MyTableWidget::~MyTableWidget() {}
+
 void MyTableWidget::receiveTableData(QString _number, QString _structure, QString _path)
 {
     QTableWidgetItem *number = new QTableWidgetItem(_number);

@@ -10,15 +10,14 @@
 class MyTableWidget : public QTableWidget
 {
     Q_OBJECT
+
 public:
     explicit MyTableWidget(QWidget *parent = nullptr);
+    ~MyTableWidget();
 
 public slots:
     void receiveTableData(QString, QString, QString);
     void openFile(QTableWidgetItem *);
-
-signals:
-
 };
 
 #endif // MYTABLEWIDGET_H

@@ -14,20 +14,23 @@
 class MyTreeWidget : public QTreeWidget
 {
     Q_OBJECT
+
 private:
     QString dir = "/Users/hraesvelgr/Projects/SAPR_CS/Tree/";
+
 public:
     explicit MyTreeWidget(QWidget *parent = nullptr);
+    ~MyTreeWidget();
 
     void createDir(QString);
     void print(QTreeWidgetItem *);
     QString fullPath(QTreeWidgetItem *);
     int filesCount(QString);
+
 protected:
     virtual void dragEnterEvent(QDragEnterEvent* event) override;
     virtual void dropEvent(QDropEvent *event) override;
     virtual void dragMoveEvent(QDragMoveEvent *event) override;
-
 
 signals:
     void sendTableData(QString, QString, QString);

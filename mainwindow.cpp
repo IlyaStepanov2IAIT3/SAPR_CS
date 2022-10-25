@@ -1,5 +1,4 @@
 #include "mainwindow.h"
-//#include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -52,15 +51,8 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-    delete widget;
-    delete tree;
-    delete table;
     delete selected_item;
-    delete createTreeBt;
-    delete saveBt;
-    delete addToTopBt;
-    delete addBt;
-    delete deleteBt;
+    delete widget;
 }
 
 void MainWindow::addItem(QTreeWidget *treeWidget)

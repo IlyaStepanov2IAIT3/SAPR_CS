@@ -6,6 +6,8 @@ MyTreeWidget::MyTreeWidget(QWidget *parent)
     setSelectionMode(QAbstractItemView::SingleSelection);
 }
 
+MyTreeWidget::~MyTreeWidget() {}
+
 void MyTreeWidget::dragEnterEvent(QDragEnterEvent *event)
 {
     if (event->mimeData()->hasUrls()) {
@@ -26,8 +28,7 @@ void MyTreeWidget::dropEvent(QDropEvent *event)
     QString structure;
     QString newFilePath;
 
-    for (int i = 0; i < item->text(0).length(); i++)
-    {
+    for (int i = 0; i < item->text(0).length(); i++) {
         if (!item->text(0)[i].isLetter()) structure += item->text(0)[i];
     }
 
@@ -47,8 +48,7 @@ void MyTreeWidget::dragMoveEvent(QDragMoveEvent *event)
     foreach(QTreeWidgetItem* item, this->selectedItems()) item->setSelected(false);
 
     QModelIndex index = indexAt(event->pos());
-    if (index.isValid())
-        this->itemFromIndex(index)->setSelected(true);
+    if (index.isValid()) this->itemFromIndex(index)->setSelected(true);
 }
 
 void MyTreeWidget::createDir(QString path)
@@ -65,8 +65,7 @@ void MyTreeWidget::print(QTreeWidgetItem *item)
 QString MyTreeWidget::fullPath(QTreeWidgetItem *item)
 {
     QString path = item->text(0);
-    while(item->parent() != NULL)
-    {
+    while(item->parent() != NULL) {
         path = item->parent()->text(0) + QDir::separator() + path;
         item = item->parent();
     }
@@ -78,11 +77,10 @@ int MyTreeWidget::filesCount(QString _dir)
     int resultCount = 0;
     QDir newDir(_dir);
     QStringList dirs = newDir.entryList(QDir::Dirs);
-    foreach(QString tempDir, dirs)
-    {
+    foreach(QString tempDir, dirs) {
         if (tempDir != "." && tempDir != "..") resultCount += filesCount(_dir + tempDir + QDir::separator());
     }
     QStringList files = newDir.entryList(QDir::Files);
-    foreach(QString file, files) resultCount++;
+    for(int i = 0; i < files.length(); i++) resultCount++;
     return resultCount;
 }
